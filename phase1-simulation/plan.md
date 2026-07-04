@@ -3,7 +3,7 @@
 ## Goal
 Build a reproducible, air-gapped Containerlab topology simulating SD-WAN over
 MPLS that boots cleanly, routes traffic, and supports fault injection. Phase 1
-produces realistic telemetry; it does NOT analyze it (that's Phase 2/3).
+produces realistic telemetry; analysis is deferred to Phase 2/3.
 
 ## Tooling Decisions (locked)
 - **OS:** Bare-metal Fedora Linux (MPLS, namespaces, tc netem are Linux-native)
