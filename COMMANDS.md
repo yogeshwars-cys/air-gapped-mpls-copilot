@@ -25,7 +25,7 @@ python3 phase2-telemetry/netflow_simulator.py
 ```
 
 Serves synthetic L3VPN flow records: `http://localhost:9995/flows`  
-Inject flows faults: `curl 'http://localhost:9995/inject?fault=loss'`
+Inject flow faults: `curl 'http://localhost:9995/inject?fault=loss'`
 
 ### Optional Terminal — Application traffic generator
 

@@ -6,7 +6,7 @@ All fault injection methods write ACPs to `phase3-models/acp_logs/` and push the
 
 ## 1. Run the fault streamer (continuous)
 
-The fault streamer is the primary way to generate live traffic for the dashboard.
+The fault streamer is the primary way to generate live alert traffic for the dashboard.
 
 ```bash
 # Natural mode (default) — state machine: long quiet periods + realistic fault bursts
