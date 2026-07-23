@@ -385,3 +385,17 @@ air-gapped-mpls-copilot/
     ├── phase3-models-doc/
     └── phase4-llm-doc/
 ```
+
+## Where to start reading
+
+| If you want | Read |
+|---|---|
+| To run the whole stack | [COMMANDS.md](COMMANDS.md) |
+| The problem statement it answers | [PblmStmnt.md](PblmStmnt.md) |
+| What is claimed vs. measured | "Measured results & honest scope" above |
+| What is still missing | [GAP_ANALYSIS.md](GAP_ANALYSIS.md) |
+| How faults are injected for demos | [docs/fault-injection.md](docs/fault-injection.md) |
+
+## License
+
+MIT — see [LICENSE](LICENSE).
