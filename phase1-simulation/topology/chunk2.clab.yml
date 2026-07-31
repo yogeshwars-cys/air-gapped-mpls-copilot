@@ -1,0 +1,27 @@
+name: chunk2
+topology:
+  nodes:
+    pe1:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - ../configs/pe1/frr.conf:/etc/frr/frr.conf
+        - ../configs/pe1/daemons:/etc/frr/daemons
+        - ../configs/pe1/vtysh.conf:/etc/frr/vtysh.conf
+    p1:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - ../configs/p1/frr.conf:/etc/frr/frr.conf
+        - ../configs/p1/daemons:/etc/frr/daemons
+        - ../configs/p1/vtysh.conf:/etc/frr/vtysh.conf
+    pe2:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - ../configs/pe2/frr.conf:/etc/frr/frr.conf
+        - ../configs/pe2/daemons:/etc/frr/daemons
+        - ../configs/pe2/vtysh.conf:/etc/frr/vtysh.conf
+  links:
+    - endpoints: ["pe1:eth1", "p1:eth1"]
+    - endpoints: ["p1:eth2", "pe2:eth1"]

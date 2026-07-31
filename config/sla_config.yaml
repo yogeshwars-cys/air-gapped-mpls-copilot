@@ -1,0 +1,36 @@
+# config/sla_config.yaml — Per-Service SLA Thresholds
+#
+# Consumed by graph_model.py (clone scoring) and acp_manager.py (service_sla_tag).
+# Add new service classes here without touching Python code — the graph scoring
+# logic reads this file at startup.
+#
+# latency_ms_max    : one-way path latency ceiling (ms)
+# jitter_ms_max     : acceptable jitter ceiling (ms); null = not measured
+# packet_loss_pct_max: max acceptable loss percentage (0.01 = 0.01%)
+# priority          : lower = higher priority (used to break ties in clone scoring)
+
+services:
+  voip:
+    latency_ms_max: 150
+    jitter_ms_max: 30
+    packet_loss_pct_max: 0.5
+    priority: 1
+
+  database:
+    latency_ms_max: 50
+    jitter_ms_max: null
+    packet_loss_pct_max: 0.01
+    priority: 2
+
+  bulk_transfer:
+    latency_ms_max: 500
+    jitter_ms_max: null
+    packet_loss_pct_max: 2.0
+    priority: 3
+
+# Default applied when no service_sla_tag is set on a flow
+default:
+  latency_ms_max: 200
+  jitter_ms_max: null
+  packet_loss_pct_max: 1.0
+  priority: 99

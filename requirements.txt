@@ -1,0 +1,46 @@
+# =============================================================================
+# Project Aether — Python Dependencies
+# =============================================================================
+#
+# INSTALL ORDER:
+#   1. pip install torch --index-url https://download.pytorch.org/whl/cu128  (CUDA 12.8, RTX 4060)
+#      OR: pip install torch  (CPU fallback)
+#   2. pip install -r requirements.txt
+#
+# Air-gap note: all inference runs offline. No external API calls are made.
+# =============================================================================
+
+# ── Phase 2 — Telemetry ───────────────────────────────────────────────────────
+pyyaml>=6.0
+
+# ── Phase 3 — ML Models ───────────────────────────────────────────────────────
+torch>=2.0.0
+numpy>=1.24.0
+networkx>=3.0
+scipy>=1.10.0
+scikit-learn>=1.2.0
+
+# Trend forecasting (Holt-Winters, used in digital_twin.py)
+statsmodels>=0.14.0
+
+# Model signing / compliance
+cryptography>=41.0.0
+
+# ACP audit log
+jsonlines>=3.1.0
+
+# ── Phase 4 — LLM & RAG ──────────────────────────────────────────────────────
+# Vector DB (ChromaDB, local persistent, no cloud)
+chromadb>=0.4.0
+
+# Embedding model (all-MiniLM-L6-v2, runs 100% offline after first download)
+sentence-transformers>=2.2.0
+
+# HTTP client for Ollama API
+httpx>=0.25.0
+
+# ── Phase 5 — NOC Dashboard ──────────────────────────────────────────────────
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+websockets>=12.0
+pydantic>=2.0.0

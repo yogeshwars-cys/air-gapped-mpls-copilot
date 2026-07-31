@@ -1,0 +1,65 @@
+name: chunk3
+
+topology:
+  # All seven nodes are FRR routers. 'kinds' sets the image once so we don't
+  # repeat it on every node.
+  kinds:
+    linux:
+      image: frrouting/frr:latest
+
+  nodes:
+    # ---------------- PROVIDER CORE (unchanged from Chunk 2) ----------------
+    pe1:
+      kind: linux
+      binds:
+        - ../configs/pe1/daemons:/etc/frr/daemons
+        - ../configs/pe1/frr.conf:/etc/frr/frr.conf
+        - ../configs/pe1/vtysh.conf:/etc/frr/vtysh.conf
+    p1:
+      kind: linux
+      binds:
+        - ../configs/p1/daemons:/etc/frr/daemons
+        - ../configs/p1/frr.conf:/etc/frr/frr.conf
+        - ../configs/p1/vtysh.conf:/etc/frr/vtysh.conf
+    pe2:
+      kind: linux
+      binds:
+        - ../configs/pe2/daemons:/etc/frr/daemons
+        - ../configs/pe2/frr.conf:/etc/frr/frr.conf
+        - ../configs/pe2/vtysh.conf:/etc/frr/vtysh.conf
+
+    # ---------------- CUSTOMER SITES (new in Chunk 3) ----------------
+    ce-branch1:
+      kind: linux
+      binds:
+        - ../configs/ce-branch1/daemons:/etc/frr/daemons
+        - ../configs/ce-branch1/frr.conf:/etc/frr/frr.conf
+        - ../configs/ce-branch1/vtysh.conf:/etc/frr/vtysh.conf
+    ce-hub:
+      kind: linux
+      binds:
+        - ../configs/ce-hub/daemons:/etc/frr/daemons
+        - ../configs/ce-hub/frr.conf:/etc/frr/frr.conf
+        - ../configs/ce-hub/vtysh.conf:/etc/frr/vtysh.conf
+    ce-branch2:
+      kind: linux
+      binds:
+        - ../configs/ce-branch2/daemons:/etc/frr/daemons
+        - ../configs/ce-branch2/frr.conf:/etc/frr/frr.conf
+        - ../configs/ce-branch2/vtysh.conf:/etc/frr/vtysh.conf
+    ce-dc:
+      kind: linux
+      binds:
+        - ../configs/ce-dc/daemons:/etc/frr/daemons
+        - ../configs/ce-dc/frr.conf:/etc/frr/frr.conf
+        - ../configs/ce-dc/vtysh.conf:/etc/frr/vtysh.conf
+
+  links:
+    # ---- core (Chunk 2) ----
+    - endpoints: ["pe1:eth1", "p1:eth1"]     # 10.0.1.0/24
+    - endpoints: ["p1:eth2", "pe2:eth1"]     # 10.0.2.0/24
+    # ---- PE-CE access links (Chunk 3) ----
+    - endpoints: ["pe1:eth2", "ce-branch1:eth1"]   # 10.1.11.0/30
+    - endpoints: ["pe1:eth3", "ce-hub:eth1"]       # 10.1.13.0/30
+    - endpoints: ["pe2:eth2", "ce-branch2:eth1"]   # 10.2.12.0/30
+    - endpoints: ["pe2:eth3", "ce-dc:eth1"]        # 10.2.14.0/30

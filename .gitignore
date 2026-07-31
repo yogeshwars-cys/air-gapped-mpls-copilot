@@ -1,0 +1,62 @@
+clab-*/
+*.bak
+
+# Personal notes / drafts
+idea*.md
+*idea*.md
+GAP_ANALYSIS.md
+GAPS_AND_IDEAS.md
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# ML model artifacts (trained checkpoints + normalization params)
+*.pt
+*.pth
+*.onnx
+*.gguf
+phase3-models/saved/
+phase3-models/acp_logs/
+
+# Generated datasets
+dataset.csv
+dataset_large.csv
+dataset_v2.csv
+*.dataset.csv
+
+# Private keys
+*.pem
+!*.pub.pem
+
+# LLM vector database (large, runtime-generated)
+phase4-llm/chroma_db/
+
+# Runtime audit logs
+phase3-models/ikb/incidents.jsonl
+phase3-models/action_log.jsonl
+
+# Telemetry data
+prometheus-data/
+grafana-data/
+
+# Fault injection logs (generated at runtime)
+faults_log.csv
+
+# Operator-edited autonomy policy overrides (runtime, not source)
+phase3-models/policy_overrides.json
+
+# Phase 6 validation run reports (timestamped, generated at runtime)
+phase6-validation/report_*.json
+
+# run.sh process logs (generated at runtime)
+.logs/
+
+# Editor / office lock files
+.~lock.*#
+
+# Presentation decks / exports (large binaries; submissions live outside the repo)
+*.pptx
+*.pdf
